@@ -1,0 +1,54 @@
+<div class="container-lg row">
+  <form class="card">
+    <div class="card-header bg-success text-white"> Envio de Mensajes </div>
+    <div class="card-body">
+      <div class="row form-group">
+        <label class="col-sm-12 col-md-4">Para</label>
+        <input class="form-control col-sm-12 col-md-8" type="number" maxlength="15" name="txtpara"
+          [(ngModel)]="mensaje.para" />
+      </div>
+      <div class="row form-group">
+        <label class="col-sm-12 col-md-4">Desde</label>
+        <input class="form-control col-sm-12 col-md-8" type="number" maxlength="15" name="txtdesde"
+          [(ngModel)]="mensaje.desde" />
+      </div>
+      <label>Cantidad: {{tamTexto}}/{{tamMaxTexto}}</label>
+      <div class="row form-group">
+        <textarea class="form-control" [maxlength]="tamMaxTexto" rows="5" name="txtTexto" [(ngModel)]="mensaje.texto"
+          (ngModelChange)="controlTamTexto()" placeholder="Mensaje">
+          </textarea>
+      </div>
+      <div class="row text-center form-group">
+        <!-- Boton modal-->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal1"
+          (click)="enviarMensaje()">Enviar</button>
+        <button type="button" class="btn btn-primary" (click)="limpiarMensaje()">Limpiar</button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="modal1" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="ModalLabel">Mensaje Enviado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body text-left">
+                <p *ngFor="let mensaje of listaMensajes; let primero=first">
+                  <span *ngIf="primero"> {{mensaje.texto}} </span>
+                </p>
+              </div>
+              <div class="modal-footer">
+                <p *ngFor="let mensaje of listaMensajes; let primero=first" class="text-center">
+                  <span *ngIf="primero">{{mensaje.fecha | date: "hh:mm:s dd/MM/y"}}</span>
+                </p>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

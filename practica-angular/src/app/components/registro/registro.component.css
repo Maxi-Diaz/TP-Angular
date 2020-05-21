@@ -1,0 +1,37 @@
+
+.opcion label{
+    font-family:'Baloo Thambi 2', cursive;
+    font-size: 15px;
+    padding-left: 2em;
+}
+
+.opciones{
+    width: 100%;
+    text-align: center;
+}
+
+.datos{
+    width: 95%;
+    margin: auto;
+}
+
+.datos label{
+    font-family:'Baloo Thambi 2', cursive;
+    font-size: 15px;
+}
+
+.opciones label{
+    margin-right: 150px;
+}
+
+.datos input{
+    width: 60%;
+    border: 2px solid grey;
+    border-radius: 5px;
+}
+select{
+    width: 50%;
+	border: 2px solid grey;
+    border-radius: 5px;
+    margin-left: 1em;
+}
