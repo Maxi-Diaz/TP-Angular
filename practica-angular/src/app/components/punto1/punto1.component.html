@@ -1,55 +1,59 @@
 <section class="row main">
-  <form #formregistro="ngForm" class="card m-auto col-md-6 bg-info rounded">
-    <div class="card-header mr-0 rounded col-md-6 bg-primary text-white"> Envia tu mensajes </div>
-    <div class="card-body">
-      <div class="row form-group">
-        <label class="col-sm-12 col-md-4 text-white"> Para: </label>
-        <input class="form-control col-sm-12 col-md-7" required type="number" name="txtpara"
-          [(ngModel)]="mensaje.para" placeholder="Número destino" />
-      </div>
-      <div class="row form-group">
-        <label class="col-sm-12 col-md-4 text-white"> Desde: </label>
-        <input class="form-control col-sm-12 col-md-7" required type="number" maxlength="15" name="txtdesde"
-          [(ngModel)]="mensaje.desde" placeholder="Tu número" />
-      </div>
-      <label class="text-white bg-primary">({{tamMaxTexto - tamTexto}}: Caracteres restantes)</label>
-      <div class="row form-group">
-        <textarea class="form-control" required [maxlength]="tamMaxTexto" rows="5" name="txtTexto" [(ngModel)]="mensaje.texto"
-          (ngModelChange)="controlTamTexto()" placeholder="Mensaje...">
-          </textarea>
-      </div>
-      <div class="row form-group">
-        <!-- Boton modal-->
-        <div class="m-auto">
-          <button type="button" class="btn btn-primary mr-4" [disabled]="!formregistro.form.valid" data-toggle="modal" data-target="#modal1"
-            (click)="enviarMensaje()">Enviar</button>
-          <button type="button" class="btn btn-primary ml-4" (click)="limpiarMensaje()">Limpiar</button>
+  <h1 class="col-lg-10 text-white-50 text-center bg-info rounded m-auto"> ENVIAR MENSAJES </h1>
+  <div class="col-lg-6 m-auto">
+    <form #formregistro="ngForm" class="card mt-4 bg-light rounded formu">
+      <div class="card-header mr-0 rounded col-md-6 bg-primary text-white"> Envia tu mensajes </div>
+      <div class="card-body">
+        <div class="row form-group">
+          <label class="col-sm-12 col-md-4 text-primary"> Para: </label>
+          <input class="form-control col-sm-12 col-md-7" required type="number" name="txtpara"
+            [(ngModel)]="mensaje.para" placeholder="Número destino" />
         </div>
-        <!-- Modal -->
-        <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="modal1" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header bg-primary">
-                <h5 class="modal-title text-white" id="ModalLabel">Mensaje Enviado</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body text-left">
-                <p *ngFor="let mensaje of listaMensajes; let primero=first">
-                  <span *ngIf="primero"> {{mensaje.texto}} </span>
-                </p>
-              </div>
-              <div class="modal-footer">
-                <p *ngFor="let mensaje of listaMensajes; let primero=first" class="mr-auto">
-                  <span *ngIf="primero">{{mensaje.fecha | date: "hh:mm:s dd/MM/y"}}</span>
-                </p>
-                <button type="button" class="btn btn-outline-primary" (click)="limpiarMensaje()" data-dismiss="modal">Close</button>
+        <div class="row form-group">
+          <label class="col-sm-12 col-md-4 text-primary"> Desde: </label>
+          <input class="form-control col-sm-12 col-md-7" required type="number" maxlength="15" name="txtdesde"
+            [(ngModel)]="mensaje.desde" placeholder="Tu número" />
+        </div>
+        <label class="text-white bg-primary">({{tamMaxTexto - tamTexto}}: Caracteres restantes)</label>
+        <div class="row form-group">
+          <textarea class="form-control" required [maxlength]="tamMaxTexto" rows="5" name="txtTexto"
+            [(ngModel)]="mensaje.texto" (ngModelChange)="controlTamTexto()" placeholder="Mensaje...">
+            </textarea>
+        </div>
+        <div class="row form-group">
+          <!-- Boton modal-->
+          <div class="m-auto">
+            <button type="button" class="btn btn-primary mr-4" [disabled]="!formregistro.form.valid" data-toggle="modal"
+              data-target="#modal1" (click)="enviarMensaje()">Enviar</button>
+            <button type="button" class="btn btn-primary ml-4" (click)="limpiarMensaje()">Limpiar</button>
+          </div>
+          <!-- Modal -->
+          <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="modal1" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header bg-primary">
+                  <h5 class="modal-title text-white" id="ModalLabel">Mensaje Enviado</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body text-left">
+                  <p *ngFor="let mensaje of listaMensajes; let primero=first">
+                    <span *ngIf="primero"> {{mensaje.texto}} </span>
+                  </p>
+                </div>
+                <div class="modal-footer">
+                  <p *ngFor="let mensaje of listaMensajes; let primero=first" class="mr-auto">
+                    <span *ngIf="primero">{{mensaje.fecha | date: "hh:mm:s dd/MM/y"}}</span>
+                  </p>
+                  <button type="button" class="btn btn-outline-primary" (click)="limpiarMensaje()"
+                    data-dismiss="modal">Close</button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </section>

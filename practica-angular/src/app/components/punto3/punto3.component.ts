@@ -72,6 +72,7 @@ export class Punto3Component implements OnInit {
       this.jubilado = this.jubilado+1;
     }
     if(this.venta.categoriaPasajero == "a"){
+      this.precioActual = this.venta.precioPasajero;
       this.mostrarDescuento = false;
       this.adulto = this.adulto+1;
     }

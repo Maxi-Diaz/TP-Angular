@@ -1,52 +1,58 @@
-<section class="container row">
-    <form #formregistro="ngForm">
-        <div class="form-group">
-            <label for="dnipasajero">DNI</label>
-            <input type="text" class="form-control" id="dnipasajero" name="dnipasajero" placeholder="ingrese DNI"
-                required minlength="7" [(ngModel)]="venta.dniPasajero" #dnipasajero="ngModel" />
-            <div *ngIf="dnipasajero.invalid && (dnipasajero.dirty || dnipasajero.touched)" class="alert alert-danger">
-                <div #validar *ngIf="dnipasajero.errors.required">
-                    DNI es campo requerido
-                </div>
-                <div *ngIf="dnipasajero.errors.minlength">
-                    DNI debe ser un valor mayor de 7 caracteres
+<section class="container row main">
+    <h1 class="col-lg-10 text-white-50 text-center bg-info m-auto rounded"> VENTAS DE PASAJES </h1>
+    <div class="col-lg-5 mt-5 mb-5">
+        <h3 class="text-primary text-white-50 text-center bg-info rounded">Nuevo Pasaje</h3>
+        <form #formregistro="ngForm" class="card bg-light">
+            <div class="form-group">
+                <label for="dnipasajero" class="text-primary"> DNI:</label>
+                <input type="text" class="form-control" id="dnipasajero" name="dnipasajero" placeholder="ingrese DNI"
+                    required minlength="7" [(ngModel)]="venta.dniPasajero" #dnipasajero="ngModel" />
+                <div *ngIf="dnipasajero.invalid && (dnipasajero.dirty || dnipasajero.touched)"
+                    class="alert alert-danger">
+                    <div #validar *ngIf="dnipasajero.errors.required">
+                        DNI es campo requerido
+                    </div>
+                    <div *ngIf="dnipasajero.errors.minlength">
+                        DNI debe ser un valor mayor de 7 caracteres
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="precio">Precio</label>
-            <input type="number" required class="form-control" id="precio" name="precio" placeholder="ingrese valor del pasaje"
-                [(ngModel)]="venta.precioPasajero" #precio="ngModel" />
-        </div>
-        <div *ngIf="precio.invalid && (precio.dirty || precio.touched)" class="alert alert-danger">
-            <div #validar *ngIf="precio.errors.required">
-                Precio es campo requerido
+            <div class="form-group">
+                <label for="precio" class="text-primary"> Precio:</label>
+                <input type="number" required class="form-control" id="precio" name="precio"
+                    placeholder="ingrese valor del pasaje" [(ngModel)]="venta.precioPasajero" #precio="ngModel" />
             </div>
-        </div>
-        <div class="form-group">
-            <label for="categoria">Categor&iacute;a</label>
-            <select name="categoria" id="categoria" class="form-control" [(ngModel)]="venta.categoriaPasajero"
-                (change)='calcularDescuento()'>
-                <!---->
-                <option value="m">Menor</option>
-                <option value="a">Adulto</option>
-                <option value="j">Jubilado</option>
-                <option value="s" selected>Seleccione ..</option>
-            </select>
-        </div>
-        <div class="text-danger" *ngIf="mostrarDescuento">Descuento:{{descuento |currency:'USD'}}</div>
-        <div class="text-danger" *ngIf="mostrarDescuento">Precio Total:{{precioActual | currency:'USD'}}</div>
-        <button type="button" class="btn btn-primary" (click)="guardarVentas()"
-            [disabled]="!formregistro.form.valid">Enviar</button>
-        <button type="button" class="btn btn-primary" (click)="limpiarVentas()">Limpiar</button>
-    </form>
-    <div>
-        <h3>Pasajes Vendidos</h3>
+            <div *ngIf="precio.invalid && (precio.dirty || precio.touched)" class="alert alert-danger">
+                <div #validar *ngIf="precio.errors.required">
+                    Precio es campo requerido
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="categoria" class="text-primary"> Categor&iacute;a:</label>
+                <select name="categoria" id="categoria" placeholder="Seleccione .." class="form-control"
+                    [(ngModel)]="venta.categoriaPasajero" (change)='calcularDescuento()'>
+                    <option value="m">Menor</option>
+                    <option value="a">Adulto</option>
+                    <option value="j">Jubilado</option>
+                </select>
+            </div>
+            <div class="text-white bg-info col-lg-6" *ngIf="mostrarDescuento"> Descuento: {{descuento |currency:'USD'}}
+            </div>
+            <div class="text-white bg-info col-lg-6" *ngIf="mostrarDescuento"> Precio Total:
+                {{precioActual | currency:'USD'}}</div>
+            <div class="m-auto pt-4 pb-3">
+                <button type="button" class="btn btn-outline-primary mr-3" (click)="guardarVentas()"
+                    [disabled]="!formregistro.form.valid">Enviar</button>
+                <button type="button" class="btn btn-outline-primary ml-3" (click)="limpiarVentas()">Limpiar</button>
+            </div>
+        </form>
     </div>
-    <div>
-        <table class="table">
-            <thead>
-                <tr>
+    <!--Tabla de Ventas-->
+    <div class="col-lg-7 mt-5 mb-5 table-wrapper-scroll-y my-custom-scrollbar">
+        <h2 class="text-white-50 text-center bg-info rounded">Pasajes Vendidos</h2>
+        <table class="table col-lg-12">
+            <thead class="bg-info text-white">
+                <tr class="text-center">
                     <th scope="col">DNI</th>
                     <th scope="col">Precio</th>
                     <th scope="col">Categor&iacute;a</th>
@@ -54,7 +60,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of listaVentas">
+                <tr *ngFor="let item of listaVentas" class="text-center">
                     <td>{{item.dniPasajero}}</td>
                     <td>{{item.precioPasajero | currency:'USD'}}</td>
                     <td>{{item.categoriaPasajero}}</td>
@@ -62,5 +68,20 @@
                 </tr>
             </tbody>
         </table>
+    </div>
+    <div class="col-lg-6 bg-light m-auto">
+        <h3 class="text-white-50 text-center bg-info rounded"> Resumen </h3>
+        <div class="card">
+            <dl>
+                <dt>Menores</dt>
+                <dd>- Vendidos: {{menor}}</dd>
+                <dt>Adulto</dt>
+                <dd>- Vendidos: {{adulto}}</dd>
+                <dt>Jubilado</dt>
+                <dd>- Vendidos: {{jubilado}}</dd>
+                <dt>Total de Ventas de pasajes</dt>
+                <dd>- Total: {{menor+adulto+jubilado}}</dd>
+            </dl>
+        </div>
     </div>
 </section>
