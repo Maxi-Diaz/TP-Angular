@@ -1,29 +1,30 @@
-<div class="container-lg row">
-  <form class="card">
-    <div class="card-header bg-success text-white"> Envio de Mensajes </div>
+<section class="row main">
+  <form #formregistro="ngForm" class="card m-auto col-md-6 bg-info rounded">
+    <div class="card-header mr-0 rounded col-md-6 bg-primary text-white"> Envia tu mensajes </div>
     <div class="card-body">
       <div class="row form-group">
-        <label class="col-sm-12 col-md-4">Para</label>
-        <input class="form-control col-sm-12 col-md-8" type="number" maxlength="15" name="txtpara"
-          [(ngModel)]="mensaje.para" />
+        <label class="col-sm-12 col-md-4 text-white"> Para: </label>
+        <input class="form-control col-sm-12 col-md-7" required type="number" name="txtpara"
+          [(ngModel)]="mensaje.para" placeholder="Número destino" />
       </div>
       <div class="row form-group">
-        <label class="col-sm-12 col-md-4">Desde</label>
-        <input class="form-control col-sm-12 col-md-8" type="number" maxlength="15" name="txtdesde"
-          [(ngModel)]="mensaje.desde" />
+        <label class="col-sm-12 col-md-4 text-white"> Desde: </label>
+        <input class="form-control col-sm-12 col-md-7" required type="number" maxlength="15" name="txtdesde"
+          [(ngModel)]="mensaje.desde" placeholder="Tu número" />
       </div>
-      <label>Cantidad: {{tamTexto}}/{{tamMaxTexto}}</label>
+      <label class="text-white bg-primary">({{tamMaxTexto - tamTexto}}: Caracteres restantes)</label>
       <div class="row form-group">
-        <textarea class="form-control" [maxlength]="tamMaxTexto" rows="5" name="txtTexto" [(ngModel)]="mensaje.texto"
-          (ngModelChange)="controlTamTexto()" placeholder="Mensaje">
+        <textarea class="form-control" required [maxlength]="tamMaxTexto" rows="5" name="txtTexto" [(ngModel)]="mensaje.texto"
+          (ngModelChange)="controlTamTexto()" placeholder="Mensaje...">
           </textarea>
       </div>
-      <div class="row text-center form-group">
+      <div class="row form-group">
         <!-- Boton modal-->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal1"
-          (click)="enviarMensaje()">Enviar</button>
-        <button type="button" class="btn btn-primary" (click)="limpiarMensaje()">Limpiar</button>
-
+        <div class="m-auto">
+          <button type="button" class="btn btn-primary mr-4" [disabled]="!formregistro.form.valid" data-toggle="modal" data-target="#modal1"
+            (click)="enviarMensaje()">Enviar</button>
+          <button type="button" class="btn btn-primary ml-4" (click)="limpiarMensaje()">Limpiar</button>
+        </div>
         <!-- Modal -->
         <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="modal1" aria-hidden="true">
           <div class="modal-dialog">
@@ -40,10 +41,10 @@
                 </p>
               </div>
               <div class="modal-footer">
-                <p *ngFor="let mensaje of listaMensajes; let primero=first" class="text-center">
+                <p *ngFor="let mensaje of listaMensajes; let primero=first" class="mr-auto">
                   <span *ngIf="primero">{{mensaje.fecha | date: "hh:mm:s dd/MM/y"}}</span>
                 </p>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-primary" (click)="limpiarMensaje()" data-dismiss="modal">Close</button>
               </div>
             </div>
           </div>
@@ -51,4 +52,4 @@
       </div>
     </div>
   </form>
-</div>
+</section>

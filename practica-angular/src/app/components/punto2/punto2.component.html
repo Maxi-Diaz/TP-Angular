@@ -1,29 +1,49 @@
-<div class="container">
-    <form>
-        <div class="form-group">
-            <label for="exampleInputEmail1">Correo Electrónico</label>
-            <input type="email" class="form-control" name="txtemail" [(ngModel)]="asistente.usuario" placeholder="Ingrese Correo">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputEmail1">Nombre de la Organizacion</label>
-            <input type="text" class="form-control" name="txtnombre" [(ngModel)]="asistente.nombreOrg" placeholder="Ingrese nombre de Organizacíon">
-        </div>
-        <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input check" id="solicitud" (change)="checked($event)">
-            <label class="form-check-label" for="solicitud"> Solicitar Constancia</label>
-        </div>
-        <button type="submit" class="btn btn-primary" (click)="guardarAsistente()"> Registrar </button>
-    </form>
-    <div class="table-wrapper-scroll-y my-custom-scrollbar row m-3">
-        <table class="table col-lg-10">
-            <thead class="thead-dark text-center">
+<section class="row">
+    <div class="col-lg-8 m-auto">
+        <form #formAsistencia="ngForm" class="pt-1 card mt-4 mb-5 p-4 bg-light">
+            <h3 class="text-primary text-center">Asistencia al Curso</h3>
+            <div class="form-group">
+                <label for="exampleInputEmail1" class="text-primary">Correo Electrónico</label>
+                <input type="email" class="form-control" id="txtemail" name="txtemail" required
+                    [(ngModel)]="asistente.usuario" placeholder="Ingrese Correo" #txtemail="ngModel">
+                    <div *ngIf="txtemail.invalid && (txtemail.dirty || txtemail.touched)" class="alert alert-danger">
+                        <div #validar *ngIf="txtemail.errors.required">
+                            Correo es un campo requerido
+                        </div>
+                    </div>
+                
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1" class="text-primary">Nombre de la Organizacion</label>
+                <input type="text" class="form-control" name="txtnombre" required [(ngModel)]="asistente.nombreOrg"
+                    placeholder="Ingrese nombre de Organizacíon" #txtnombre="ngModel">
+                    <div *ngIf="txtnombre.invalid && (txtnombre.dirty || txtnombre.touched)" class="alert alert-danger">
+                        <div #validar *ngIf="txtnombre.errors.required">
+                            Nombre Organizacíon es un campo requerido
+                        </div>
+                    </div>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input check" id="solicitud"
+                    (change)="checked($event)">
+                <label class="form-check-label text-primary" for="solicitud"> Solicitar Constancia</label>
+            </div>
+            <button type="submit" class="btn btn-outline-primary ml-auto mb-3 col-lg-2" (click)="guardarAsistente()" [disabled]="!formAsistencia.form.valid">
+                Registrar </button>
+        </form>
+    </div>
+
+    <div class="table-wrapper-scroll-y my-custom-scrollbar col-lg-10 m-auto">
+        <h2 class="text-primary">Listado de asistencia</h2>
+        <table class="table bg-light">
+            <thead class="thead-dark text-center col-lg-10 m-auto">
                 <tr>
                     <th scope="col">Usuario</th>
                     <th scope="col">Organizacion</th>
                     <th scope="col">Solicitud</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class=" border border-dark">
                 <tr *ngFor="let item of listaAsistente" class="text-center">
                     <td>{{item.usuario | uppercase}}</td>
                     <td>{{item.nombreOrg | uppercase }}</td>
@@ -32,4 +52,4 @@
             </tbody>
         </table>
     </div>
-</div>
+</section>

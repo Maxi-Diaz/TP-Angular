@@ -1,6 +1,6 @@
 .my-custom-scrollbar {
     position: relative;
-    height: 20em;
+    height: 25em;
     overflow: auto;
     }
 .table-wrapper-scroll-y {
@@ -8,6 +8,6 @@
     }
 
 .check{
-    width: 1em;
+    width: 1,5em;
     height: 1em;
 }

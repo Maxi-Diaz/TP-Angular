@@ -9,7 +9,7 @@ import { Mensaje } from '../../models/mensaje';
 export class Punto1Component implements OnInit {
 
   mensaje: Mensaje;
-  tamMaxTexto: number = 100;
+  tamMaxTexto: number = 120;
   tamTexto: number = 0;
   listaMensajes: Array<Mensaje>;
  
@@ -34,14 +34,13 @@ export class Punto1Component implements OnInit {
   public enviarMensaje() {
     this.mensaje.fecha = new Date();
     this.listaMensajes.push(this.mensaje);
-    console.log(this.mensaje);
   }
 
   /**
    * limpiarMensaje
    */
   public limpiarMensaje() {
-    this.mensaje.texto = "";
-    this.tamTexto = 0;
+    this.mensaje = new Mensaje();
   }
+
 }

@@ -2,7 +2,8 @@
     position: relative;
     height: 30em;
     overflow: auto;
-    }
+}
+
 .table-wrapper-scroll-y {
     display: block;
-    }
+}
