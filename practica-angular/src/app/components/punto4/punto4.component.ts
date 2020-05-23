@@ -1,3 +1,4 @@
+import { CrucigramaService } from './../../services/crucigrama.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,25 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./punto4.component.css']
 })
 export class Punto4Component implements OnInit {
-  checks = true;
-  solicitur: boolean;
-  constructor() { }
+
+  constructor( private palabraService: CrucigramaService) { }
 
   ngOnInit(): void {
   }
 
-  /**
-   * cambio
-e   */
-  public cambio(e) {
-    if (e.target.checked == true) {
-      this.solicitur = true;
-      this.checks=true;
-      console.log(this.solicitur);
-    } else {
-      this.solicitur = false;
-      this.checks=false;
-      console.log(this.solicitur);
-    }
-  }
 }

@@ -32,7 +32,9 @@ import { RegistroComponent } from './components/registro/registro.component';
     AppRoutingModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [
+    
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
