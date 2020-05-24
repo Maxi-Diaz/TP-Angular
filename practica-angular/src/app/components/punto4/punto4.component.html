@@ -1,54 +1,45 @@
 <section class="row m-3">
-    <h1 class="col-lg-10 text-white-50 text-center bg-info m-auto rounded"> CRUCIGRAMA </h1>
-    <div class="col-lg-10 bg-light m-auto">
-        <label for="vida" class="mr-5 text-info lead"> vida: </label>
-        <label for="puntaje" class="ml-5 text-info lead"> puntaje: </label>
+    <div *ngIf="!juegoIniciado" class=" col-lg-5 card bg-light m-auto">
+        <button class="btn btn-primary" (click)="iniciarJuego()">
+            <dt>Iniciar Juego</dt>
+        </button>
     </div>
-    <div class=" col-lg-8 m-auto text-center">
-        <img src="" class="rounded" alt="...">
-    </div>
-    <div class="col-lg-10 m-auto">
-        <div class="input-group">
-            <input type="text" aria-label="First name" class="form-control text-center">
-            <input type="text" aria-label="Last name" class="form-control text-center">
-            <input type="text" aria-label="First name" class="form-control text-center">
-            <input type="text" aria-label="Last name" class="form-control text-center">
-            <input type="text" aria-label="First name" class="form-control text-center">
-            <input type="text" aria-label="Last name" class="form-control text-center">
-            <input type="text" aria-label="First name" class="form-control text-center">
-            <input type="text" aria-label="Last name" class="form-control text-center">
-            <input type="text" aria-label="First name" class="form-control text-center">
-            <input type="text" aria-label="Last name" class="form-control text-center">
+
+    <div *ngIf="juegoIniciado">
+        <h1 class="col-lg-10 text-white-50 text-center bg-info m-auto rounded"> CRUCIGRAMA </h1>
+        <div class="col-lg-10 bg-light m-auto">
+            <label for="vida" class="mr-5 text-info lead"> vida: {{vida}}</label>
+            <label for="puntaje" class="ml-5 text-info lead"> puntaje: {{puntaje}}</label>
+            <button class="btn btn-danger ml-5" (click)="juegoIniciado=false">Reiniciar</button>
         </div>
-    </div>
-    <div class="col-lg-10 m-auto">
-        <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
-            <div class="btn-group" role="group" aria-label="First group">
-                <button type="button" class="btn btn-secondary">A</button>
-                <button type="button" class="btn btn-secondary">B</button>
-                <button type="button" class="btn btn-secondary">C</button>
-                <button type="button" class="btn btn-secondary">D</button>
-                <button type="button" class="btn btn-secondary">F</button>
-                <button type="button" class="btn btn-secondary">G</button>
-                <button type="button" class="btn btn-secondary">H</button>
-                <button type="button" class="btn btn-secondary">I</button>
-                <button type="button" class="btn btn-secondary">J</button>
-                <button type="button" class="btn btn-secondary">K</button>
-                <button type="button" class="btn btn-secondary">L</button>
-                <button type="button" class="btn btn-secondary">M</button>
-                <button type="button" class="btn btn-secondary">N</button>
-                <button type="button" class="btn btn-secondary">O</button>
-                <button type="button" class="btn btn-secondary">P</button>
-                <button type="button" class="btn btn-secondary">Q</button>
-                <button type="button" class="btn btn-secondary">R</button>
-                <button type="button" class="btn btn-secondary">S</button>
-                <button type="button" class="btn btn-secondary">T</button>
-                <button type="button" class="btn btn-secondary">U</button>
-                <button type="button" class="btn btn-secondary">V</button>
-                <button type="button" class="btn btn-secondary">W</button>
-                <button type="button" class="btn btn-secondary">X</button>
-                <button type="button" class="btn btn-secondary">Y</button>
-                <button type="button" class="btn btn-secondary">Z</button>
+        <div class=" col-lg-8 m-auto text-center">
+            <img src="..." class="rounded mt-3 mb-3" alt="img-Animales">
+        </div>
+        <div class="col-lg-10 m-auto">
+            <div class="input-group">
+                <input *ngIf="arrayIngles.length >= 1" type="text" id="1" class="form-control text-center m-1 rounded"
+                    [(ngModel)]="letra1" (ngModelChange)="colocarLetra()">
+                <input *ngIf="arrayIngles.length >= 1" type="text" id="2" class="form-control text-center m-1 rounded"
+                    [(ngModel)]="letra2" (ngModelChange)="colocarLetra()">
+                <input *ngIf="arrayIngles.length >= 1" type="text" id="3" class="form-control text-center m-1 rounded"
+                    [(ngModel)]="letra3" (ngModelChange)="colocarLetra()">
+                <input *ngIf="arrayIngles.length >= 1" type="text" id="4" class="form-control text-center m-1 rounded"
+                    [(ngModel)]="letra4" (ngModelChange)="colocarLetra()">
+                <input *ngIf="arrayIngles.length >= 1" type="text" id="5" class="form-control text-center m-1 rounded"
+                    [(ngModel)]="letra5" (ngModelChange)="colocarLetra()">
+                <input *ngIf="arrayIngles.length >= 1" type="text" id="6" class="form-control text-center m-1 rounded"
+                    [(ngModel)]="letra6" (ngModelChange)="colocarLetra()">
+                <input *ngIf="arrayIngles.length >= 1" type="text" id="7" class="form-control text-center m-1 rounded"
+                    [(ngModel)]="letra7" (ngModelChange)="colocarLetra()">
+                <input *ngIf="arrayIngles.length >= 1" type="text" id="8" class="form-control text-center m-1 rounded"
+                    [(ngModel)]="letra8" (ngModelChange)="colocarLetra()">
+            </div>
+        </div>
+        <div class=" row col-lg-10 m-auto">
+            <div class="btn-toolbar mt-3 mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                <div *ngFor="let item of letras" class="row m-auto">
+                    <button type="button" class="btn btn-secondary mr-2 mt-2 mb-3">{{item}}</button>
+                </div>
             </div>
         </div>
     </div>

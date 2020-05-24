@@ -35,3 +35,8 @@
     border-radius: 5px;
     margin-left: 1em;
 }
+
+.main-container{
+    min-height: 100%;
+    position: relative;
+}
