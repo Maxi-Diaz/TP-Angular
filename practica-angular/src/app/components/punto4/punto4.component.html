@@ -8,37 +8,26 @@
     <div *ngIf="juegoIniciado">
         <h1 class="col-lg-10 text-white-50 text-center bg-info m-auto rounded"> CRUCIGRAMA </h1>
         <div class="col-lg-10 bg-light m-auto">
-            <label for="vida" class="mr-5 text-info lead"> vida: {{vida}}</label>
+            <label for="vida" class="mr-5 text-info lead"> vida: {{vidas}}</label>
             <label for="puntaje" class="ml-5 text-info lead"> puntaje: {{puntaje}}</label>
             <button class="btn btn-danger ml-5" (click)="juegoIniciado=false">Reiniciar</button>
         </div>
         <div class=" col-lg-8 m-auto text-center">
-            <img src="..." class="rounded mt-3 mb-3" alt="img-Animales">
+            <img src="{{itemSeleccionado.img}}" class="rounded mt-3 mb-3" alt="img-Animales" width="400" height="350">
         </div>
         <div class="col-lg-10 m-auto">
             <div class="input-group">
-                <input *ngIf="arrayIngles.length >= 1" type="text" id="1" class="form-control text-center m-1 rounded"
-                    [(ngModel)]="letra1" (ngModelChange)="colocarLetra()">
-                <input *ngIf="arrayIngles.length >= 1" type="text" id="2" class="form-control text-center m-1 rounded"
-                    [(ngModel)]="letra2" (ngModelChange)="colocarLetra()">
-                <input *ngIf="arrayIngles.length >= 1" type="text" id="3" class="form-control text-center m-1 rounded"
-                    [(ngModel)]="letra3" (ngModelChange)="colocarLetra()">
-                <input *ngIf="arrayIngles.length >= 1" type="text" id="4" class="form-control text-center m-1 rounded"
-                    [(ngModel)]="letra4" (ngModelChange)="colocarLetra()">
-                <input *ngIf="arrayIngles.length >= 1" type="text" id="5" class="form-control text-center m-1 rounded"
-                    [(ngModel)]="letra5" (ngModelChange)="colocarLetra()">
-                <input *ngIf="arrayIngles.length >= 1" type="text" id="6" class="form-control text-center m-1 rounded"
-                    [(ngModel)]="letra6" (ngModelChange)="colocarLetra()">
-                <input *ngIf="arrayIngles.length >= 1" type="text" id="7" class="form-control text-center m-1 rounded"
-                    [(ngModel)]="letra7" (ngModelChange)="colocarLetra()">
-                <input *ngIf="arrayIngles.length >= 1" type="text" id="8" class="form-control text-center m-1 rounded"
-                    [(ngModel)]="letra8" (ngModelChange)="colocarLetra()">
+                <div *ngFor="let item of letrasParaAdivinar; index as i " class="mx-auto">
+                    <input id="{{ i }}" maxlength="1" class="text-center text-uppercase" size="3" type="text"
+                        (keydown)="verificarPalabra(i,$event)" (focus)="verificarBotones(i)">
+                </div>
             </div>
         </div>
         <div class=" row col-lg-10 m-auto">
             <div class="btn-toolbar mt-3 mb-3" role="toolbar" aria-label="Toolbar with button groups">
                 <div *ngFor="let item of letras" class="row m-auto">
-                    <button type="button" class="btn btn-secondary mr-2 mt-2 mb-3">{{item}}</button>
+                    <button type="button" class="btn btn-secondary mr-2 mt-2 mb-3"
+                        (click)="seleccionarTecla(item)">{{item}}</button>
                 </div>
             </div>
         </div>

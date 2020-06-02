@@ -9,71 +9,22 @@ export class CrucigramaService {
 
   constructor() {
     this.palabras = new Array<Palabra>();
-    this.palabras = [
-      {
-        id: 1,
-        espaniol: "leon",
-        img: "./assets/punto4/026.png",
-        ingles: "lion",
-      },
-      {
-        id: 2,
-        espaniol: "Zorro",
-        img: "./assets/punto4/018.png",
-        ingles: "Fox",
-      },
-      {
-        id: 3,
-        espaniol: "oveja",
-        img: "./assets/punto4/049.png",
-        ingles: "sheep",
-      },
-      {
-        id: 4,
-        espaniol: "elefante",
-        img: "./assets/punto4/009.png",
-        ingles: "elephant",
-      },
-      {
-        id: 5,
-        espaniol: "perro",
-        img: "./assets/punto4/001.png",
-        ingles: "dog",
-      },
-      {
-        id: 6,
-        espaniol: "camello",
-        img: "./assets/punto4/015.png",
-        ingles: "camel",
-      },
-      {
-        id: 7,
-        espaniol: "leopardo",
-        img: "./assets/punto4/027.png",
-        ingles: "leopard",
-      },
-      {
-        id: 8,
-        espaniol: "caballo",
-        img: "./assets/punto4/028.png",
-        ingles: "horse",
-      },
-      {
-        id: 9,
-        espaniol: "pato",
-        img: "./assets/punto4/039.png",
-        ingles: "duck",
-      },
-      {
-        id: 10,
-        espaniol: "serpiente",
-        img: "./assets/punto4/073.png",
-        ingles: "snake",
-      },
-    ]
   }
 
-  getPalabra(){
+  public cargarPalabras() {
+    this.palabras.push({ espaniol: 'leon', ingles: 'lion', img: './assets/punto4/026.png' })
+    this.palabras.push({ espaniol: 'zorro', ingles: 'fox', img: './assets/punto4/018.png' })
+    this.palabras.push({ espaniol: 'oveja', ingles: 'sheep', img: './assets/punto4/049.png' })
+    this.palabras.push({ espaniol: 'elefante', ingles: 'elephant', img: './assets/punto4/009.png' })
+    this.palabras.push({ espaniol: 'perro', ingles: 'dog', img: './assets/punto4/001.png' })
+    this.palabras.push({ espaniol: 'camello', ingles: 'camel', img: './assets/punto4/015.png' })
+    this.palabras.push({ espaniol: 'leopardo', ingles: 'leopard', img: './assets/punto4/027.png' })
+    this.palabras.push({ espaniol: 'caballo', ingles: 'horse', img: './assets/punto4/028.png' })
+    this.palabras.push({ espaniol: 'pato', ingles: 'duck', img: './assets/punto4/039.png' })
+    this.palabras.push({ espaniol: 'serpiente', ingles: 'snake', img: './assets/punto4/073.png' })
+  }
+
+  public listarPalabras() {
     return this.palabras;
   }
 }

@@ -1,6 +1,5 @@
 export class Palabra {
 
-    id: number;
     espaniol: string;
     ingles: string;
     img: string;
