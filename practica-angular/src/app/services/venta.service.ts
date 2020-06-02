@@ -25,4 +25,20 @@ export class VentaService {
   public guardar(venta: Pasaje) {
     this.listVentas.push(venta);
   }
+
+  /**
+   * eliminar
+   */
+  public eliminar(venta: Pasaje) {
+    let indice = this.listVentas.findIndex((item: Pasaje) => item.dniPasajero === venta.dniPasajero);
+    this.listVentas.splice(indice, 1);
+  }
+
+  /**
+   * modificar
+   */
+  public modificar(venta: Pasaje) {
+    let indice = this.listVentas.findIndex((item: Pasaje) => item.dniPasajero === venta.dniPasajero);
+    this.listVentas.splice(indice, 1, venta);
+  }
 }

@@ -45,9 +45,10 @@
             </thead>
             <tbody class=" border border-dark">
                 <tr *ngFor="let item of listaAsistente" class="text-center">
-                    <td>{{item.usuario | uppercase}}</td>
+                    <td>{{item.usuario}}</td>
                     <td>{{item.nombreOrg | uppercase }}</td>
                     <td><input class="check" type="checkbox" disabled [checked]=item.solicitarCons></td>
+                    <td *ngIf="item.solicitarCons"> </td>
                 </tr>
             </tbody>
         </table>

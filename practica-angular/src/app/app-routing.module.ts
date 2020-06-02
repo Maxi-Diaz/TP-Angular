@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'galeria', component: GaleriaComponent },
   { path: 'registro', component: RegistroComponent },
-  {path:'**', pathMatch: 'full', redirectTo: 'punto1'}
+  { path:'**', pathMatch: 'full', redirectTo: 'punto1'}
 ];
 
 @NgModule({

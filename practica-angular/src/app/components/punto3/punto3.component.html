@@ -65,6 +65,10 @@
                     <td>{{item.precioPasajero | currency:'USD'}}</td>
                     <td>{{item.categoriaPasajero}}</td>
                     <td>{{item.fechaCompra | date: 'dd/MM/yyyy'}}</td>
+                    <td><button type="button" class="btn btn-outline-danger"
+                            (click)="eliminarVenta(item)">Eliminar</button>
+                        <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#modal1"
+                            (click)="modVenta(item)">Modificar</button></td>
                 </tr>
             </tbody>
         </table>
@@ -82,6 +86,55 @@
                 <dt>Total de Ventas de pasajes</dt>
                 <dd>- Total: {{menor+adulto+jubilado}}</dd>
             </dl>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="modal1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h5 class="modal-title text-white" id="ModalLabel">Modificar Pasaje</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-left">
+                    <form class="card bg-light">
+                        <div class="form-group">
+                            <label for="dnipasajero" class="text-primary"> DNI:</label>
+                            <input type="text" class="form-control" id="dnipasajero" name="dnipasajero"
+                                placeholder="ingrese DNI" [(ngModel)]="venta.dniPasajero" #dnipasajero="ngModel" />
+
+                        </div>
+                        <div class="form-group">
+                            <label for="precio" class="text-primary"> Precio:</label>
+                            <input type="number" class="form-control" id="precio" name="precio"
+                                placeholder="ingrese valor del pasaje" [(ngModel)]="venta.precioPasajero"
+                                #precio="ngModel" />
+                        </div>
+                        <div class="form-group">
+                            <label for="categoria" class="text-primary"> Categor&iacute;a:</label>
+                            <select name="categoria" id="categoria" placeholder="Seleccione .." class="form-control"
+                                [(ngModel)]="venta.categoriaPasajero" (change)='calcularDescuento()'>
+                                <option value="m">Menor</option>
+                                <option value="a">Adulto</option>
+                                <option value="j">Jubilado</option>
+                            </select>
+                        </div>
+                        <div class="text-white bg-info col-lg-6" *ngIf="mostrarDescuento"> Descuento:
+                            {{descuento |currency:'USD'}}
+                        </div>
+                        <div class="text-white bg-info col-lg-6" *ngIf="mostrarDescuento"> Precio Total:
+                            {{precioActual | currency:'USD'}}</div>
+                        <div class="m-auto pt-4 pb-3">
+                            <button type="button" class="btn btn-outline-success"
+                                (click)="modificarVenta()" data-dismiss="modal" (click)="limpiarVentas()">Modificar</button>
+                            <button type="button" class="btn btn-outline-danger" (click)="limpiarVentas()" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
         </div>
     </div>
 </section>

@@ -11,7 +11,6 @@ export class Punto2Component implements OnInit {
   asistente: Asistente;
   listaAsistente: Array<Asistente>;
   control: boolean = false;
-  //prueba: boolean = true;
 
   constructor() {
     this.asistente = new Asistente;
@@ -30,7 +29,6 @@ export class Punto2Component implements OnInit {
   }
 
   public reiniciar(){
-
   }
 
   /**

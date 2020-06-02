@@ -56,6 +56,27 @@ export class Punto3Component implements OnInit {
   }
 
   /**
+   * eliminarVenta
+   */
+  public eliminarVenta(venta: Pasaje) {
+    this.ventaService.eliminar(venta)
+  }
+
+  /**
+   * modificarVenta
+   */
+  public modificarVenta() {
+    this.ventaService.modificar(this.venta)
+  }
+
+  /**
+   * modVenta
+   */
+  public modVenta(venta: Pasaje) {
+    this.venta = venta
+  }
+
+  /**
    * calcularDescuento
    */
   public calcularDescuento() {
